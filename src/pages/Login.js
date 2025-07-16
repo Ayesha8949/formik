@@ -8,8 +8,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
-    if (isLoggedIn) {
+    if (localStorage.getItem('isLoggedIn')) {
       navigate('/home');
     }
   }, [navigate]);

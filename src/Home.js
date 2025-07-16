@@ -5,15 +5,15 @@ import { useNavigate } from 'react-router-dom';
 const Home = () => {
   const navigate = useNavigate();
 
-  // ✅ Yeh useEffect check karega ki user login hai ya nahi
+  
   useEffect(() => {
     const isLoggedIn = localStorage.getItem('isLoggedIn');
     if (!isLoggedIn) {
-      navigate('/'); // 🔐 agar login nahi hai toh login page pe redirect karo
+      navigate('/'); 
     }
   }, [navigate]);
 
-  // ✅ Logout function
+  
   const handleLogout = () => {
     localStorage.removeItem('isLoggedIn'); // logout
     navigate('/'); // wapas login page pe bhejna

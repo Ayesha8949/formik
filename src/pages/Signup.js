@@ -8,8 +8,7 @@ const Signup = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
-    if (isLoggedIn) {
+    if (localStorage.getItem('isLoggedIn')) {
       navigate('/home');
     }
   }, [navigate]);
@@ -19,13 +18,16 @@ const Signup = () => {
   const validationSchema = Yup.object({
     name: Yup.string().required('Required'),
     email: Yup.string().email('Invalid email').required('Required'),
-    password: Yup.string().min(6, 'Minimum 6 characters').required('Required'),
+    password: Yup.string()
+      .min(6, 'Minimum 6 characters')
+      .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])/, 'Must include upper, lower, number, special char')
+      .required('Required'),
   });
 
   const onSubmit = (values) => {
     localStorage.setItem('user', JSON.stringify(values));
     alert('Signup successful!');
-    navigate('/');
+    navigate('/login');
   };
 
   return (

@@ -1,29 +1,16 @@
 // src/pages/Home.js
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
-    if (!isLoggedIn) {
-      navigate('/');
-    }
-  }, [navigate]);
-
-  const user = JSON.parse(localStorage.getItem('user'));
-
-  const handleLogout = () => {
-    localStorage.removeItem('isLoggedIn');
-    navigate('/');
-  };
-
   return (
     <div style={styles.container}>
-      <h2>Welcome, {user?.name || 'User'}!</h2>
-      <p>You are now logged in.</p>
-      <button style={styles.button} onClick={handleLogout}>Logout</button>
+      <h2>Welcome to Our Website!</h2>
+      <p>Please login or signup to continue.</p>
+      <div style={styles.buttonGroup}>
+        <Link to="/login"><button style={styles.button}>Login</button></Link>
+        <Link to="/signup"><button style={styles.button}>Signup</button></Link>
+      </div>
     </div>
   );
 };
@@ -38,10 +25,15 @@ const styles = {
     borderRadius: '10px',
     background: '#fefefe',
   },
+  buttonGroup: {
+    marginTop: '20px',
+    display: 'flex',
+    justifyContent: 'center',
+    gap: '20px',
+  },
   button: {
     padding: '10px 20px',
-    marginTop: '20px',
-    background: '#dc3545',
+    background: '#007bff',
     color: 'white',
     border: 'none',
     borderRadius: '5px',
