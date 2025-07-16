@@ -15,8 +15,8 @@ const Home = () => {
 
   
   const handleLogout = () => {
-    localStorage.removeItem('isLoggedIn'); // logout
-    navigate('/'); // wapas login page pe bhejna
+    localStorage.removeItem('isLoggedIn'); 
+    navigate('/'); 
   };
 
   return (
